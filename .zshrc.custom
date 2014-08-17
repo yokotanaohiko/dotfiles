@@ -229,14 +229,14 @@ autoload predict-on
 #predict-off
 
 #@でvimを起動する
-export EDITOR=vim
-function starteditor() {
-  exec < /dev/tty
-  ${EDITOR}
-  zle reset-prompt
-}
-zle -N starteditor
-bindkey '\@' starteditor
+#export EDITOR=vim
+#function starteditor() {
+#  exec < /dev/tty
+#  ${EDITOR}
+#  zle reset-prompt
+#}
+#zle -N starteditor
+#bindkey '\@' starteditor
 
 # ^でcd ..する
 function cdup() {
@@ -247,13 +247,13 @@ zle reset-prompt
 zle -N cdup
 bindkey '\^' cdup
 #~でホームディレクトリに移動
-function cdhome() {
-  echo
-  cd ~
-  zle reset-prompt
-}
-zle -N cdhome
-bindkey '~' cdhome
+#function cdhome() {
+#  echo
+#  cd ~
+#  zle reset-prompt
+#}
+#zle -N cdhome
+#bindkey '~' cdhome
 
 
 # zsh の exntended_glob と HEAD^^^ を共存させる。
