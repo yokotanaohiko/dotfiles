@@ -9,6 +9,6 @@ def setup() :
     if not exists('~/dotfiles') :
         cs.run('git clone https://github.com/yokotanaohiko/dotfiles.git')
     with cs.cd('~/dotfiles') :
-        cs.run('setup.sh')
+        cs.run('./setup.sh ; true')
         cs.run('vim -c NeoBundleInstall -c q')
     
