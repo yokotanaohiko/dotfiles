@@ -1,0 +1,10 @@
+snippet lo
+  sub ${1:func} :Local{
+    my ( $self ,$c ) = @_;
+
+    ${2:code}
+
+  }
+
+snippet pa
+  [% ${1:name} | ${2:html} %]

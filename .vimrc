@@ -1,55 +1,81 @@
+set nocompatible
+
 if has('gui_running') && !has('unix')
   set encoding=utf-8
 endif
 scriptencoding cp932
 set fileencoding=utf-8
 
-set nocompatible
-filetype off
+function! s:WithoutBundles()
+	colorscheme desert
+endfunction
 
-if has('vim_starting')
-	set runtimepath+=~/.vim/bundle/neobundle.vim
-	call neobundle#rc(expand('~/.vim/bundle/'))
-endif
+function! s:InitNeoBundle()
+	if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
+		filetype plugin indent off
+		if has('vim_starting')
+			set runtimepath+=~/.vim/bundle/neobundle.vim/
+		endif
+		try
+			call neobundle#rc(expand('~/.vim/bundle/'))
+			NeoBundle 'Shougo/neobundle.vim'
+			NeoBundle 'Shougo/vimproc',{ 
+				\ 'build':{
+				\	'windows':'tools\\update-dll-mingw',
+				\	'cygwin':'make -f make_cygwin.mak',
+				\	'mac':'make -f make_mac.mak',
+				\	'unix':'make -f make_unix.mak',
+				\	},
+				\}
+			NeoBundle 'VimClojure'
+			NeoBundle 'Shougo/vimshell'
+			NeoBundle 'Shougo/unite.vim'
+			NeoBundle 'Shougo/neossh.vim'
+			NeoBundle 'Shougo/neocomplcache'
+			NeoBundle 'Shougo/neosnippet'
+			NeoBundle 'jpalardy/vim-slime'
+			NeoBundle 'scrooloose/syntastic'
+			NeoBundle 'scrooloose/nerdtree'
+			NeoBundle 'mattn/emmet-vim'
+			NeoBundle 'surround.vim'
+			NeoBundle 'open-browser.vim'
+			NeoBundle 'mattn/webapi-vim'
+			NeoBundle 'tell-k/vim-browsereload-mac'
+			NeoBundle 'hail2u/vim-css3-syntax'
+			NeoBundle 'taichouchou2/html5.vim'
+			NeoBundle 'pangloss/vim-javascript'
+			NeoBundle 'kchmck/vim-coffee-script'
+			NeoBundle 'davidhalter/jedi-vim'
+			NeoBundle 'kevinw/pyflakes-vim'
+			NeoBundle 'nathanaelkane/vim-indent-guides'
+			NeoBundle 'thinca/vim-ref'
+			""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
+		catch 
+			call s:WithoutBundles()
+		endtry
+	else
+		call s:WithoutBundles()
+	endif
 
-" originalrepos on github
+	filetype indent plugin on
+endfunction
 
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'VimClojure'
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neossh.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'jpalardy/vim-slime'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'mattn/emmet-vim'
-NeoBundle 'surround.vim'
-NeoBundle 'open-browser.vim'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'tell-k/vim-browsereload-mac'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'taichouchou2/html5.vim'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'kevinw/pyflakes-vim'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'thinca/vim-ref'
-""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
-         
-filetype plugin indent on
-filetype indent on
-syntax on
+call s:InitNeoBundle()
 
+syntax on 
+"クリップボードの連携(mac)
+set clipboard+=unnamed
 "文字がない場所にもカーソルを移動できるようにする
 set number
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-
+"移動コマンドを使ったとき、行頭に移動しない
+set nostartofline
+"検索結果をハイライト表示する
+:set hlsearch
+"バックスペースでインデントを削除できるようにする
+set backspace=indent,eol,start
 "言語別にインデント幅を変える
 augroup vimrc
 autocmd! FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
@@ -73,12 +99,14 @@ inoremap "" ""<LEFT>
 inoremap <> <><LEFT>
 inoremap '' ''<LEFT>
 
+inoremap <C-CR> <Space><Space><CR>
+
 "Ctrl+hjklでウィンドウ間を移動
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
+let mapleader = ","
 " 対応するタグにジャンプ
 :source $VIMRUNTIME/macros/matchit.vim
 
@@ -258,4 +286,18 @@ nnoremap <silent> ,vch :UniteBuildClearHighlight<CR>
 "" }}}
 
 
+function! s:open_kobito(...)
+	if a:0 == 0
+		call system('open -a Kobito '.expand('%:p'))
+	else
+		call system('open -a Kobito '.join(a:000, ' '))
+	endif
+endfunction
 
+"引数のファイル(複数指定可)を Kobitoで開く
+" （引数無しのときはカレントバッファを開く
+command! -nargs=* Kobito call s:open_kobito(<f-args>)
+" Kobito を閉じる
+command! -nargs=0 KobitoClose call system("osascript -e 'tell application\"Kobito\" to quit'")
+" Kobito にフォーカスを移す
+command! -nargs=0 KobitoFocus call system("osascript -e 'tell application\"Kobito\" to activate'")

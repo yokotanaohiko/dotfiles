@@ -45,7 +45,6 @@
 'syntastic_auto_loc_list'	syntastic.txt	/*'syntastic_auto_loc_list'*
 'syntastic_check_on_open'	syntastic.txt	/*'syntastic_check_on_open'*
 'syntastic_check_on_wq'	syntastic.txt	/*'syntastic_check_on_wq'*
-'syntastic_cursor_columns'	syntastic.txt	/*'syntastic_cursor_columns'*
 'syntastic_debug'	syntastic.txt	/*'syntastic_debug'*
 'syntastic_debug_file'	syntastic.txt	/*'syntastic_debug_file'*
 'syntastic_echo_current_error'	syntastic.txt	/*'syntastic_echo_current_error'*
@@ -205,6 +204,7 @@
 <Plug>(unite_loop_cursor_up)	unite.txt	/*<Plug>(unite_loop_cursor_up)*
 <Plug>(unite_narrowing_dot)	unite.txt	/*<Plug>(unite_narrowing_dot)*
 <Plug>(unite_narrowing_input_history)	unite.txt	/*<Plug>(unite_narrowing_input_history)*
+<Plug>(unite_narrowing_path)	unite.txt	/*<Plug>(unite_narrowing_path)*
 <Plug>(unite_new_candidate)	unite.txt	/*<Plug>(unite_new_candidate)*
 <Plug>(unite_print_candidate)	unite.txt	/*<Plug>(unite_print_candidate)*
 <Plug>(unite_print_message_log)	unite.txt	/*<Plug>(unite_print_message_log)*
@@ -516,10 +516,6 @@ g:neosnippet#enable_snipmate_compatibility	neosnippet.txt	/*g:neosnippet#enable_
 g:neosnippet#expand_word_boundary	neosnippet.txt	/*g:neosnippet#expand_word_boundary*
 g:neosnippet#scope_aliases	neosnippet.txt	/*g:neosnippet#scope_aliases*
 g:neosnippet#snippets_directory	neosnippet.txt	/*g:neosnippet#snippets_directory*
-g:neossh#copy_directory_command	neossh.txt	/*g:neossh#copy_directory_command*
-g:neossh#copy_file_command	neossh.txt	/*g:neossh#copy_file_command*
-g:neossh#delete_directory_command	neossh.txt	/*g:neossh#delete_directory_command*
-g:neossh#delete_file_command	neossh.txt	/*g:neossh#delete_file_command*
 g:openbrowser_default_search	openbrowser.txt	/*g:openbrowser_default_search*
 g:openbrowser_fix_hosts	openbrowser.txt	/*g:openbrowser_fix_hosts*
 g:openbrowser_fix_paths	openbrowser.txt	/*g:openbrowser_fix_paths*
@@ -576,6 +572,11 @@ g:unite_ignore_source_files	unite.txt	/*g:unite_ignore_source_files*
 g:unite_kind_cdable_cd_command	unite.txt	/*g:unite_kind_cdable_cd_command*
 g:unite_kind_cdable_lcd_command	unite.txt	/*g:unite_kind_cdable_lcd_command*
 g:unite_kind_file_preview_max_filesize	unite.txt	/*g:unite_kind_file_preview_max_filesize*
+g:unite_kind_file_ssh_copy_directory_command	neossh.txt	/*g:unite_kind_file_ssh_copy_directory_command*
+g:unite_kind_file_ssh_copy_file_command	neossh.txt	/*g:unite_kind_file_ssh_copy_file_command*
+g:unite_kind_file_ssh_delete_directory_command	neossh.txt	/*g:unite_kind_file_ssh_delete_directory_command*
+g:unite_kind_file_ssh_delete_file_command	neossh.txt	/*g:unite_kind_file_ssh_delete_file_command*
+g:unite_kind_file_ssh_switch_command	neossh.txt	/*g:unite_kind_file_ssh_switch_command*
 g:unite_kind_file_vertical_preview	unite.txt	/*g:unite_kind_file_vertical_preview*
 g:unite_kind_jump_list_after_jump_scroll	unite.txt	/*g:unite_kind_jump_list_after_jump_scroll*
 g:unite_kind_openable_cd_command	unite.txt	/*g:unite_kind_openable_cd_command*
@@ -586,11 +587,9 @@ g:unite_matcher_fuzzy_max_input_length	unite.txt	/*g:unite_matcher_fuzzy_max_inp
 g:unite_no_default_keymappings	unite.txt	/*g:unite_no_default_keymappings*
 g:unite_prompt	unite.txt	/*g:unite_prompt*
 g:unite_quick_match_table	unite.txt	/*g:unite_quick_match_table*
-g:unite_redraw_hold_candidates	unite.txt	/*g:unite_redraw_hold_candidates*
 g:unite_source_alias_aliases	unite.txt	/*g:unite_source_alias_aliases*
 g:unite_source_bookmark_directory	unite.txt	/*g:unite_source_bookmark_directory*
 g:unite_source_buffer_time_format	unite.txt	/*g:unite_source_buffer_time_format*
-g:unite_source_file_async_command	unite.txt	/*g:unite_source_file_async_command*
 g:unite_source_file_ignore_pattern	unite.txt	/*g:unite_source_file_ignore_pattern*
 g:unite_source_file_rec_async_command	unite.txt	/*g:unite_source_file_rec_async_command*
 g:unite_source_file_rec_ignore_pattern	unite.txt	/*g:unite_source_file_rec_ignore_pattern*
@@ -827,7 +826,6 @@ neobundle-options-augroup	neobundle.txt	/*neobundle-options-augroup*
 neobundle-options-autoload	neobundle.txt	/*neobundle-options-autoload*
 neobundle-options-base_path	neobundle.txt	/*neobundle-options-base_path*
 neobundle-options-build	neobundle.txt	/*neobundle-options-build*
-neobundle-options-build_commands	neobundle.txt	/*neobundle-options-build_commands*
 neobundle-options-default	neobundle.txt	/*neobundle-options-default*
 neobundle-options-depends	neobundle.txt	/*neobundle-options-depends*
 neobundle-options-directory	neobundle.txt	/*neobundle-options-directory*
@@ -1122,14 +1120,12 @@ syntastic-global-options	syntastic.txt	/*syntastic-global-options*
 syntastic-highlighting	syntastic.txt	/*syntastic-highlighting*
 syntastic-intro	syntastic.txt	/*syntastic-intro*
 syntastic-license	syntastic.txt	/*syntastic-license*
-syntastic-netrw	syntastic.txt	/*syntastic-netrw*
 syntastic-notes	syntastic.txt	/*syntastic-notes*
 syntastic-powershell	syntastic.txt	/*syntastic-powershell*
 syntastic-pymode	syntastic.txt	/*syntastic-pymode*
 syntastic-quickstart	syntastic.txt	/*syntastic-quickstart*
 syntastic-statusline-flag	syntastic.txt	/*syntastic-statusline-flag*
 syntastic-vim-virtualenv	syntastic.txt	/*syntastic-vim-virtualenv*
-syntastic-ycm	syntastic.txt	/*syntastic-ycm*
 syntastic.txt	syntastic.txt	/*syntastic.txt*
 syntax_complete	neocomplcache.txt	/*syntax_complete*
 tags_complete	neocomplcache.txt	/*tags_complete*
@@ -1262,8 +1258,6 @@ unite-kind-common	unite.txt	/*unite-kind-common*
 unite-kind-completion	unite.txt	/*unite-kind-completion*
 unite-kind-directory	unite.txt	/*unite-kind-directory*
 unite-kind-file	unite.txt	/*unite-kind-file*
-unite-kind-file_base	unite.txt	/*unite-kind-file_base*
-unite-kind-file_vimfiler_base	unite.txt	/*unite-kind-file_vimfiler_base*
 unite-kind-guicmd	unite.txt	/*unite-kind-guicmd*
 unite-kind-jump_list	unite.txt	/*unite-kind-jump_list*
 unite-kind-neobundle	neobundle.txt	/*unite-kind-neobundle*
@@ -1309,9 +1303,7 @@ unite-options-no-cursor-line	unite.txt	/*unite-options-no-cursor-line*
 unite-options-no-empty	unite.txt	/*unite-options-no-empty*
 unite-options-no-focus	unite.txt	/*unite-options-no-focus*
 unite-options-no-quit	unite.txt	/*unite-options-no-quit*
-unite-options-no-resize	unite.txt	/*unite-options-no-resize*
 unite-options-no-split	unite.txt	/*unite-options-no-split*
-unite-options-path	unite.txt	/*unite-options-path*
 unite-options-profile-name	unite.txt	/*unite-options-profile-name*
 unite-options-prompt	unite.txt	/*unite-options-prompt*
 unite-options-prompt-direction	unite.txt	/*unite-options-prompt-direction*
@@ -1332,7 +1324,6 @@ unite-options-verbose	unite.txt	/*unite-options-verbose*
 unite-options-vertical	unite.txt	/*unite-options-vertical*
 unite-options-winheight	unite.txt	/*unite-options-winheight*
 unite-options-winwidth	unite.txt	/*unite-options-winwidth*
-unite-options-wipe	unite.txt	/*unite-options-wipe*
 unite-options-wrap	unite.txt	/*unite-options-wrap*
 unite-ref	unite-ref.txt	/*unite-ref*
 unite-ref-changelog	unite-ref.txt	/*unite-ref-changelog*
@@ -1380,7 +1371,6 @@ unite-source-command	unite.txt	/*unite-source-command*
 unite-source-directory	unite.txt	/*unite-source-directory*
 unite-source-directory/new	unite.txt	/*unite-source-directory\/new*
 unite-source-file	unite.txt	/*unite-source-file*
-unite-source-file/async	unite.txt	/*unite-source-file\/async*
 unite-source-file/new	unite.txt	/*unite-source-file\/new*
 unite-source-file_point	unite.txt	/*unite-source-file_point*
 unite-source-file_rec	unite.txt	/*unite-source-file_rec*
@@ -1416,6 +1406,8 @@ unite_default_key_mappings	unite.txt	/*unite_default_key_mappings*
 vS	surround.txt	/*vS*
 v_<C-Y>,	emmet.txt	/*v_<C-Y>,*
 v_<Plug>(unite_toggle_selected_candidates)	unite.txt	/*v_<Plug>(unite_toggle_selected_candidates)*
+v_<Plug>(vimshell_select_next_prompt)	vimshell.txt	/*v_<Plug>(vimshell_select_next_prompt)*
+v_<Plug>(vimshell_select_previous_prompt)	vimshell.txt	/*v_<Plug>(vimshell_select_previous_prompt)*
 v_<c-c><c-c>	vim-slime.txt	/*v_<c-c><c-c>*
 v_CTRL-C_CTRL-C	vim-slime.txt	/*v_CTRL-C_CTRL-C*
 v_vimshell_default_key_mappings	vimshell.txt	/*v_vimshell_default_key_mappings*

@@ -342,6 +342,7 @@ g:vimshell_popup_height				*g:vimshell_popup_height*
 
 g:vimshell_cd_command				*g:vimshell_cd_command*
 		This is the Ex command to change the current directory.
+		The command must interpret |`=|.
 
 		Default value is "lcd".
 
@@ -350,8 +351,7 @@ g:vimshell_no_save_history_commands
 		This is a dictionary value that has keys of the command name
 		that vimshell doesn't save in history.
 
-		Default value is
-		{'history' : 1, 'h' : 1, 'histdel' : 1, 'cd' : 1,}.
+		Default value is {'history': 1, 'h': 1, 'histdel': 1}.
 
 g:vimshell_scrollback_limit			*g:vimshell_scrollback_limit*
 		This value is the maximum size of command output.  Output
@@ -591,6 +591,16 @@ Normal mode key mappings.
 		Execute command by iexe.
 
 Visual mode key mappings.
+				*v_<Plug>(vimshell_select_previous_prompt)*
+<Plug>(vimshell_select_previous_prompt)
+		Select previous prompt from cursor.
+
+				*v_<Plug>(vimshell_select_next_prompt)*
+<Plug>(vimshell_select_next_prompt)
+		Select next prompt from cursor.
+
+Insert mode key mappings.
+
 					*i_<Plug>(vimshell_command_complete)*
 <Plug>(vimshell_command_complete)
 		Start completion.
@@ -689,6 +699,8 @@ a			<Plug>(vimshell_append_enter)
 Visual mode default key mappings.
 {lhs}			{rhs}
 --------		-----------------------------
+<C-p>			<Plug>(vimshell_select_previous_prompt)
+<C-n>			<Plug>(vimshell_select_next_prompt)
 
 					*i_vimshell_default_key_mappings*
 Insert mode default key mappings.
