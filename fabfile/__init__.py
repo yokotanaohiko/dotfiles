@@ -8,6 +8,7 @@ import fabric.api as fb
 from fabric.colors import *
 import dotfiles
 fb.env.hosts = ['job@ikuro.tokyo']
+#fb.env.hosts = ['nayokota-s1.ssk.ynwm.yahoo.co.jp','nayokota.anj.ssk.ynwm.yahoo.co.jp']
 
 @fb.task
 def hello():
