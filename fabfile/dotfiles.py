@@ -10,7 +10,13 @@ from fabric.contrib.files import exists
 def setup() :
     if not exists('~/dotfiles') :
         cs.run('git clone https://github.com/yokotanaohiko/dotfiles.git')
+	with cs.mode_sudo() :
+		cs.run('rm -r .vim')
+		cs.run('rm .vim*')
+		cs.run('rm .zshrc*')
+
     with cs.cd('~/dotfiles') :
         cs.run('./setup.sh ; true')
-        cs.run('vim -c NeoBundleInstall -c q')
+
+	cs.run('vim -c NeoBundleInstall -c q')
     
