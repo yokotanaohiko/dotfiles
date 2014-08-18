@@ -7,7 +7,7 @@ import cuisine as cs
 import fabric.api as fb
 from fabric.colors import *
 import dotfiles
-fb.env.hosts = ['nao@192.168.3.9']
+fb.env.hosts = ['nayokota-s1.ssk.ynwm.yahoo.co.jp','nayokota.anj.ssk.ynwm.yahoo.co.jp']
 
 @fb.task
 def hello():

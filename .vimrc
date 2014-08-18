@@ -33,6 +33,7 @@ function! s:InitNeoBundle()
 			NeoBundle 'Shougo/neossh.vim'
 			NeoBundle 'Shougo/neocomplcache'
 			NeoBundle 'Shougo/neosnippet'
+			NeoBundle 'Shougo/neomru'
 			NeoBundle 'jpalardy/vim-slime'
 			NeoBundle 'scrooloose/syntastic'
 			NeoBundle 'scrooloose/nerdtree'

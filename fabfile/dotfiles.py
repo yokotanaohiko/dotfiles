@@ -3,8 +3,10 @@
 
 import cuisine as cs
 import fabric.api as fb
+from fabric.decorators import task,parallel
 from fabric.contrib.files import exists
-@fb.task
+@task
+@parallel
 def setup() :
     if not exists('~/dotfiles') :
         cs.run('git clone https://github.com/yokotanaohiko/dotfiles.git')
