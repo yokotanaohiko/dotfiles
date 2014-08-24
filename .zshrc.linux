@@ -18,6 +18,7 @@ export PATH
 # Java
 export JAVA_HOME=/usr/lib/jvm/java-1.7.0-openjdk-1.7.0.65.x86_64
 export PATH=$JAVA_HOME/bin:$PATH
+export CLASSPATH=.:$JAVA_HOME/jre/lib:$JAVA_HOME/lib:$JAVA_HOME/lib/tools.jar
 
 # Maven2
 export MAVEN_HOME=/usr/local/apache-maven-2.2.1
