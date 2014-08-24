@@ -21,6 +21,10 @@ def hello():
                 cs.run('rpm -ivh jre-7u7-linux-i586.rpm')
     cs.run(green('echo "Hello World"'))
 
+@fb.task
+def java_install():
+    cs.package_ensure_yum("java-1.7.0-openjdk-devel.x86_64")
+
 
 @fb.task
 def test_method(): 
