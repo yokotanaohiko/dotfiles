@@ -17,7 +17,7 @@ function! s:InitNeoBundle()
 			set runtimepath+=~/.vim/bundle/neobundle.vim/
 		endif
 		try
-			call neobundle#rc(expand('~/.vim/bundle/'))
+			call neobundle#begin(expand('~/.vim/bundle/'))
 			NeoBundle 'Shougo/neobundle.vim'
 			NeoBundle 'Shougo/vimproc',{ 
 				\ 'build':{
@@ -51,6 +51,7 @@ function! s:InitNeoBundle()
 			NeoBundle 'nathanaelkane/vim-indent-guides'
 			NeoBundle 'thinca/vim-ref'
 			""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
+			call neobundle#end()
 		catch 
 			call s:WithoutBundles()
 		endtry
