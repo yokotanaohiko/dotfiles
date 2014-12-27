@@ -72,17 +72,19 @@ set number
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set expandtab
 "移動コマンドを使ったとき、行頭に移動しない
 set nostartofline
 "検索結果をハイライト表示する
-:set hlsearch
+set hlsearch
 "バックスペースでインデントを削除できるようにする
 set backspace=indent,eol,start
 "言語別にインデント幅を変える
 augroup vimrc
 autocmd! FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd! FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
-autocmd! FileType css  setlocal shiftwidth=4 tabstop=2 softtabstop=2
+autocmd! FileType css  setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd! FileType ruby  setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
 
 set autoindent
@@ -100,8 +102,6 @@ inoremap [] []<LEFT>
 inoremap "" ""<LEFT>
 inoremap <> <><LEFT>
 inoremap '' ''<LEFT>
-
-inoremap <C-CR> <Space><Space><CR>
 
 "Ctrl+hjklでウィンドウ間を移動
 nnoremap <C-h> <C-w>h
@@ -164,14 +164,14 @@ nmap <F9> :NERDTreeToggle
 "------------------------------------
 " sass
 "------------------------------------
-let g:sass_compile_auto   = 1
-let g:sass_compile_cdloop = 5
-let g:sass_compile_cssdir = ['css', 'stylesheet']
-let g:sass_compile_file   = ['scss', 'sass']
-let g:sass_started_dirs   = []
+"let g:sass_compile_auto   = 1
+"let g:sass_compile_cdloop = 5
+"let g:sass_compile_cssdir = ['css', 'stylesheet']
+"let g:sass_compile_file   = ['scss', 'sass']
+"let g:sass_started_dirs   = []
  
-autocmd FileType scss,less,sass  setlocal sw=2 sts=2 ts=2 et
-au! BufWritePost * SassCompile
+"autocmd FileType scss,less,sass  setlocal sw=2 sts=2 ts=2 et
+"au! BufWritePost * SassCompile
 
 "-----------------------------------
 "for snippet
