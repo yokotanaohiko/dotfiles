@@ -21,9 +21,14 @@ export PATH=$JAVA_HOME/bin:$PATH
 export CLASSPATH=.:$JAVA_HOME/jre/lib:$JAVA_HOME/lib:$JAVA_HOME/lib/tools.jar
 
 # Maven2
-export MAVEN_HOME=/usr/local/apache-maven-2.2.1
+#export MAVEN_HOME=/usr/local/apache-maven-2.2.1
+#export PATH=$MAVEN_HOME/bin:$PATH
+#export MAVEN_OPTS=-Xmx1024M
+
+# Maven3
+export M3_HOME=~/apache-maven-3.2.1
+export M3=$M3_home/bin
 export PATH=$MAVEN_HOME/bin:$PATH
-export MAVEN_OPTS=-Xmx1024M
 
 # rbenv
 #export PATH="$HOME/.rbenv/bin:$PATH"
