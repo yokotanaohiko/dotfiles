@@ -33,6 +33,7 @@ function! s:InitNeoBundle()
 			NeoBundle 'Shougo/neossh.vim'
 			NeoBundle 'Shougo/neocomplcache'
 			NeoBundle 'Shougo/neosnippet'
+			NeoBundle 'Shougo/neosnippet-snippets'
 			NeoBundle 'Shougo/neomru.vim'
 			NeoBundle 'jpalardy/vim-slime'
 			NeoBundle 'scrooloose/syntastic'
@@ -41,11 +42,13 @@ function! s:InitNeoBundle()
 			NeoBundle 'surround.vim'
 			NeoBundle 'open-browser.vim'
 			NeoBundle 'mattn/webapi-vim'
+			NeoBundle 'h1mesuke/vim-alignta'
 			NeoBundle 'tell-k/vim-browsereload-mac'
 			NeoBundle 'hail2u/vim-css3-syntax'
 			NeoBundle 'taichouchou2/html5.vim'
 			NeoBundle 'pangloss/vim-javascript'
 			NeoBundle 'kchmck/vim-coffee-script'
+            NeoBundle 'derekwyatt/vim-scala'
 			NeoBundle 'davidhalter/jedi-vim'
 			NeoBundle 'kevinw/pyflakes-vim'
 			NeoBundle 'nathanaelkane/vim-indent-guides'
@@ -85,7 +88,10 @@ autocmd! FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
 autocmd! FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd! FileType css  setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd! FileType ruby  setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd! FileType markdown  setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
+
+au BufRead,BufNewFile *.md set filetype=markdown
 
 set autoindent
 "入力モード中に素早くJJと入力した場合はESCとみなす
@@ -111,6 +117,9 @@ nnoremap <C-l> <C-w>l
 let mapleader = ","
 " 対応するタグにジャンプ
 :source $VIMRUNTIME/macros/matchit.vim
+
+" 選択部分を検索
+vnoremap * "zy:let @/ = @z<CR>n
 
 "----------------------------------------
 " zencoding
