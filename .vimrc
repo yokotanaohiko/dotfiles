@@ -70,6 +70,8 @@ call s:InitNeoBundle()
 syntax on 
 "クリップボードの連携(mac)
 set clipboard+=unnamed
+"ステータスライン
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 "文字がない場所にもカーソルを移動できるようにする
 set number
 set tabstop=4
@@ -323,3 +325,21 @@ nnoremap <silent> ,irb :VimShellInteractive irb<CR>
 vmap <silent> ,ss :VimShellSendString<CR>
 " 選択中に,ss: 非同期で開いたインタプリタに選択行を評価させる
 nnoremap <silent> ,ss <S-v>:VimShellSendString<CR>
+
+" surround.vimのカッコにスペースをつけないようにする
+function! s:define_surround_mapping(key, mapping)
+    let var_name = 'surround_'.char2nr(a:key)
+    execute 'let b:' . var_name . ' = "' . a:mapping . '"'
+endfunction
+
+let dict = {
+    \ '(' : "(\r)",
+    \ '[' : "[\r]",
+    \ '<' : "<\r>",
+    \ '{' : "{ \r }",
+    \ '#':  "#{\r}",
+    \ }
+
+for [key, mapping] in items(dict)
+    call s:define_surround_mapping(key, mapping)
+endfor
