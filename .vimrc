@@ -6,63 +6,32 @@ endif
 scriptencoding cp932
 set fileencoding=utf-8
 
-function! s:WithoutBundles()
-	colorscheme desert
-endfunction
+let g:rc_dir = expand('~/.vim/rc')
+let s:dein_dir = expand('~/.cache/dein')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-function! s:InitNeoBundle()
-	if isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
-		filetype plugin indent off
-		if has('vim_starting')
-			set runtimepath+=~/.vim/bundle/neobundle.vim/
-		endif
-		try
-			call neobundle#begin(expand('~/.vim/bundle/'))
-			NeoBundle 'Shougo/neobundle.vim'
-			NeoBundle 'Shougo/vimproc',{ 
-				\ 'build':{
-				\	'windows':'tools\\update-dll-mingw',
-				\	'cygwin':'make -f make_cygwin.mak',
-				\	'mac':'make -f make_mac.mak',
-				\	'unix':'make -f make_unix.mak',
-				\	},
-				\}
-			NeoBundle 'VimClojure'
-			NeoBundle 'Shougo/vimshell'
-			NeoBundle 'Shougo/unite.vim'
-			NeoBundle 'Shougo/neossh.vim'
-			NeoBundle 'Shougo/neocomplcache'
-			NeoBundle 'Shougo/neosnippet'
-			NeoBundle 'Shougo/neomru.vim'
-			NeoBundle 'jpalardy/vim-slime'
-			NeoBundle 'scrooloose/syntastic'
-			NeoBundle 'scrooloose/nerdtree'
-			NeoBundle 'mattn/emmet-vim'
-			NeoBundle 'surround.vim'
-			NeoBundle 'open-browser.vim'
-			NeoBundle 'mattn/webapi-vim'
-			NeoBundle 'tell-k/vim-browsereload-mac'
-			NeoBundle 'hail2u/vim-css3-syntax'
-			NeoBundle 'taichouchou2/html5.vim'
-			NeoBundle 'pangloss/vim-javascript'
-			NeoBundle 'kchmck/vim-coffee-script'
-			NeoBundle 'davidhalter/jedi-vim'
-			NeoBundle 'kevinw/pyflakes-vim'
-			NeoBundle 'nathanaelkane/vim-indent-guides'
-			NeoBundle 'thinca/vim-ref'
-			""NeoBundle 'https://bitbucket.org/kovisoft/slimv'
-			call neobundle#end()
-		catch 
-			call s:WithoutBundles()
-		endtry
-	else
-		call s:WithoutBundles()
-	endif
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
 
-	filetype indent plugin on
-endfunction
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
 
-call s:InitNeoBundle()
+  let s:toml = g:rc_dir . '/dein.toml'
+  let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+
+  call dein#load_toml(s:toml, {'lazy': 0})
+  call dein#load_toml(s:lazy_toml, {'lazy': 1})
+  call dein#end()
+  call dein#save_state()
+endif
+
+if dein#check_install()
+  call dein#install()
+endif
 
 syntax on 
 "クリップボードの連携(mac)
@@ -86,6 +55,9 @@ autocmd! FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd! FileType css  setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd! FileType ruby  setlocal shiftwidth=2 tabstop=2 softtabstop=2
 augroup END
+
+" mdファイルをmarkdownと認識させる
+autocmd! BufNewFile, BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown}
 
 set autoindent
 "入力モード中に素早くJJと入力した場合はESCとみなす
