@@ -50,13 +50,6 @@ repo = 'surround.vim'
 repo = 'open-browser.vim'
 
 [[plugins]]
-repo = 'tell-k/vim-browserreload-mac'
-
-
-[[plugins]]
-repo = 'tailchouchou2/html5.vim'
-
-[[plugins]]
 repo = 'kevinw/pyflakes-vim'
 
 [[plugins]]
